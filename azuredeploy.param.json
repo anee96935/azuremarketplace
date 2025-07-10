@@ -1,10 +1,15 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
   "parameters": {
-    "vmName": { "value": "customVM" },
-    "brandName": { "value": "AthenaSoft" },
-    "username": { "value": "athenatest" },
-    "password": { "value": "Athena@123" }
+    "brandName": {
+      "value": ""
+    },
+    "adminUsername": {
+      "value": ""
+    },
+    "adminPassword": {
+      "value": ""
+    }
   }
 }
