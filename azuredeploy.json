@@ -32,6 +32,24 @@
       "metadata": {
         "description": "Size of the VM"
       }
+    },
+    "brandName": {
+      "type": "string",
+      "metadata": {
+        "description": "Brand name for the setup script"
+      }
+    },
+    "username": {
+      "type": "string",
+      "metadata": {
+        "description": "Username for the setup script"
+      }
+    },
+    "password": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the setup script"
+      }
     }
   },
   "variables": {
@@ -164,6 +182,26 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
             }
           ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2021-03-01",
+      "name": "[concat(parameters('vmName'), '/setupScript')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.1",
+        "settings": {
+          "fileUris": [
+            "https://raw.githubusercontent.com/anee96935/azuremarketplace/main/setup.sh"
+          ],
+          "commandToExecute": "[concat('./setup.sh ', parameters('brandName'), ' ', parameters('username'), ' ', parameters('password'))]"
         }
       }
     }

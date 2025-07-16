@@ -5,6 +5,15 @@
     "vmName": {
       "value": "myVM"
     },
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "adminPassword": {
+      "value": "MySecurePassword123!"
+    },
+    "vmSize": {
+      "value": "Standard_B1s"
+    },
     "brandName": {
       "value": "MyBrand"
     },
@@ -13,12 +22,6 @@
     },
     "password": {
       "value": "MySecurePassword123!"
-    },
-    "adminUsername": {
-      "value": "azureuser"
-    },
-    "vmSize": {
-      "value": "Standard_B1s"
     }
   }
 }
