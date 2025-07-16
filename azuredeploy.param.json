@@ -8,8 +8,11 @@
     "adminUsername": {
       "value": "azureuser"
     },
-    "adminPassword": {
-      "value": "MySecurePassword123!"
+    "adminPasswordOrKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDolDtIoQ23oNrP90UdGJAgLosHt3lKTmm6BDclRg+IVI11dxEWRpQ1oHwfWmKLSw/SkyjHq/1d6qyz0P3oBDjQ7WpWfsU37HgwQtLm5i/q/03zHniZy5M1V9kT/vUe/wO4nwNIYLNzJhi+AgncDHGIeMz2EoogYw3oCe4lvJR2Xwy05G3g9FyIl7HIka5LCJdZwW6cNegXU0UokuwsnrHZ6vQq53GsIK+XGZ2Fn08+T2Qt/6Kn7wk6c798y+dRbzibaPMxcBBh3gECudx9J0ie/JUFc0o+xIoIjycs3WRZK62XzCJjGV82HzhG58M2u8UObHdKGVH2RhrP/HoIcbtoyH97zLUtW2BwfvlP3VOz2zKeEpnHMCN7K1zcfNj8X/ICFlHQLLXg8hNpAXSr+i19xOOaOVlINIOJ+a7/ZxiHJ8AAyve68V/kLZza9P4O0scihHniLimJFQPyV4yjlGZxlDlEQq3fSG6k3znHI5IPn32/pYhud0Inhouuxw8GOsk= imported-openssh-key"
+    },
+    "authenticationType": {
+      "value": "sshPublicKey"
     },
     "vmSize": {
       "value": "Standard_B1s"

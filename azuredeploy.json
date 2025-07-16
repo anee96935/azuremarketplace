@@ -14,11 +14,22 @@
         "description": "Admin username for the VM"
       }
     },
-    "adminPassword": {
+    "adminPasswordOrKey": {
       "type": "securestring",
       "minLength": 12,
       "metadata": {
-        "description": "Admin password for the VM"
+        "description": "SSH Key or password for the Virtual Machine. SSH key is recommended."
+      }
+    },
+    "authenticationType": {
+      "type": "string",
+      "defaultValue": "sshPublicKey",
+      "allowedValues": [
+        "sshPublicKey",
+        "password"
+      ],
+      "metadata": {
+        "description": "Type of authentication to use on the Virtual Machine. SSH key is recommended."
       }
     },
     "vmSize": {
@@ -57,7 +68,18 @@
     "subnetName": "default",
     "nicName": "[concat(parameters('vmName'), '-nic')]",
     "nsgName": "[concat(parameters('vmName'), '-nsg')]",
-    "publicIPName": "[concat(parameters('vmName'), '-pip')]"
+    "publicIPName": "[concat(parameters('vmName'), '-pip')]",
+    "linuxConfiguration": {
+      "disablePasswordAuthentication": true,
+      "ssh": {
+        "publicKeys": [
+          {
+            "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+            "keyData": "[parameters('adminPasswordOrKey')]"
+          }
+        ]
+      }
+    }
   },
   "resources": [
     {
@@ -160,7 +182,8 @@
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
+          "adminPassword": "[if(equals(parameters('authenticationType'), 'password'), parameters('adminPasswordOrKey'), json('null'))]",
+          "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'sshPublicKey'), variables('linuxConfiguration'), json('null'))]"
         },
         "storageProfile": {
           "imageReference": {
