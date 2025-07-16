@@ -229,10 +229,5 @@
       }
     }
   ],
-  "outputs": {
-    "publicIPAddress": {
-      "type": "string",
-      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName'))).ipAddress]"
-    }
-  }
+  "outputs": {}
 }
