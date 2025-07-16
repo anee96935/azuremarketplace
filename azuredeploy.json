@@ -45,7 +45,8 @@
               "subnet": {
                 "id": "[variables('subnetRef')]"
               },
-              "privateIPAllocationMethod": "Dynamic"
+              "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "10.0.0.5"
             }
           }
         ]
