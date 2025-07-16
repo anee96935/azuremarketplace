@@ -1,5 +1,3 @@
-bash
-CopyEdit
 #!/bin/bash
 
 BRAND_NAME=$1
