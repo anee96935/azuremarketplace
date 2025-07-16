@@ -20,9 +20,37 @@
     "adminUsername": {
       "type": "string",
       "defaultValue": "azureuser"
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_B2s",
+      "allowedValues": [
+        "Standard_B1s",
+        "Standard_D2s_v3",
+        "Standard_E4s_v3"
+      ]
     }
   },
   "resources": [
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2020-11-01",
+      "name": "[concat(parameters('vmName'), 'NIC')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              },
+              "privateIPAllocationMethod": "Dynamic"
+            }
+          }
+        ]
+      }
+    },
     {
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2023-03-01",
@@ -30,12 +58,7 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Standard_B2s",
-          "allowedValues": [
-          "Standard_B1s",
-          "Standard_D2s_v3",
-          "Standard_E4s_v3"
-          ]
+          "vmSize": "[parameters('vmSize')]"
         },
         "storageProfile": {
           "imageReference": {
