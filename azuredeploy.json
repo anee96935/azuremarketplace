@@ -1,42 +1,41 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "vmName": {
+      "type": "string"
+    },
     "brandName": {
       "type": "string",
-      "metadata": {
-        "description": "Your brand name. It must be 3-15 chars, lowercase letters and numbers, starting with a letter."
-      },
-      "minLength": 3,
-      "maxLength": 15
+      "defaultValue": ""
+    },
+    "username": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "password": {
+      "type": "securestring",
+      "defaultValue": ""
     },
     "adminUsername": {
       "type": "string",
-      "metadata": {
-        "description": "Administrator username."
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Administrator password."
-      }
+      "defaultValue": "azureuser"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2017-12-01",
-      "name": "[concat(parameters('brandName'), '-vm')]",
+      "apiVersion": "2023-03-01",
+      "name": "[parameters('vmName')]",
       "location": "[resourceGroup().location]",
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Standard_B2s"
-        },
-        "osProfile": {
-          "computerName": "[concat(parameters('brandName'), '-vm')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
+          "vmSize": "Standard_B2s",
+          "allowedValues": [
+          "Standard_B1s",
+          "Standard_D2s_v3",
+          "Standard_E4s_v3"
+          ]
         },
         "storageProfile": {
           "imageReference": {
@@ -49,8 +48,47 @@
             "createOption": "FromImage"
           }
         },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": true,
+            "ssh": {
+              "publicKeys": [
+                {
+                  "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+                  "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ..." 
+                }
+              ]
+            }
+          }
+        },
         "networkProfile": {
-          "networkInterfaces": []
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('vmName'), 'NIC'))]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "[concat(parameters('vmName'), '/setupScript')]",
+      "apiVersion": "2021-03-01",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.1",
+        "settings": {
+          "fileUris": [
+            "https://github.com/anee96935/azuremarketplace/blob/main/setup.sh"
+          ],
+          "commandToExecute": "[concat('./setup.sh ', parameters('brandName'), ' ', parameters('username'), ' ', parameters('password'))]"
         }
       }
     }
