@@ -187,10 +187,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "athena_publish",
-            "offer": "athena_offer",
-            "sku": "athena_sku",
-            "version": "latest"
+            "id": "[resourceId('Microsoft.Compute/images', 'athenabetaimagev5')]"
           },
           "osDisk": {
             "createOption": "FromImage",
