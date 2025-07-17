@@ -61,6 +61,24 @@
       "metadata": {
         "description": "Password for the setup script"
       }
+    },
+    "dbUser": {
+      "type": "string",
+      "metadata": {
+        "description": "Database username"
+      }
+    },
+    "dbPass": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Database password"
+      }
+    },
+    "dbName": {
+      "type": "string",
+      "metadata": {
+        "description": "Database name"
+      }
     }
   },
   "variables": {
