@@ -199,7 +199,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+              "id": "/subscriptions/<sub-id>/resourceGroups/<rg>/providers/Microsoft.Compute/galleries/athenabetaimagev5/images/Athena-Beta-Image-v5-definition/versions/0.0.5"
             }
           ]
         }
