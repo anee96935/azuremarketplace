@@ -179,6 +179,13 @@
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
+        "securityProfile": {
+          "securityType": "TrustedLaunch",
+          "uefiSettings": {
+            "secureBootEnabled": true,
+            "vTpmEnabled": true
+          }
+        },
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
