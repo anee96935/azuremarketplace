@@ -64,21 +64,13 @@
     },
     "dbUser": {
       "type": "string",
-      "metadata": {
-        "description": "Database username"
-      }
+       "defaultValue": "root"
     },
     "dbPass": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Database password"
-      }
+      "type": "securestring"
     },
     "dbName": {
-      "type": "string",
-      "metadata": {
-        "description": "Database name"
-      }
+      "type": "string"
     }
   },
   "variables": {
@@ -212,7 +204,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/galleries/athenabetaimagev5/images/Athena-Beta-Image-v5-definition/versions/0.0.5"
+            "id": "[resourceId('Microsoft.Compute/images', 'athenabetaimagev5')]"
           },
           "osDisk": {
             "createOption": "FromImage",
