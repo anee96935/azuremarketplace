@@ -187,7 +187,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/images/athenabetaimagev5"
+            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/images/Athena-Beta-Image-v5-definition"
           },
           "osDisk": {
             "createOption": "FromImage",
