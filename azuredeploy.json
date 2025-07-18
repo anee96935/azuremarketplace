@@ -96,7 +96,7 @@
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2021-02-01",
       "name": "[variables('publicIPName')]",
-      "location": "centralindia",
+      "location": "eastus",
       "properties": {
         "publicIPAllocationMethod": "Dynamic"
       }
@@ -105,7 +105,7 @@
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2021-02-01",
       "name": "[variables('nsgName')]",
-      "location": "centralindia",
+      "location": "eastus",
       "properties": {
         "securityRules": [
           {
@@ -128,7 +128,7 @@
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2021-02-01",
       "name": "[variables('vnetName')]",
-      "location": "centralindia",
+      "location": "eastus",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
       ],
@@ -155,7 +155,7 @@
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2021-02-01",
       "name": "[variables('nicName')]",
-      "location": "centralindia",
+      "location": "eastus",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName'))]",
         "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]"
@@ -181,7 +181,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2021-03-01",
       "name": "[parameters('vmName')]",
-      "location": "centralindia",
+      "location": "eastus",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
       ],
@@ -226,7 +226,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "apiVersion": "2021-03-01",
       "name": "[concat(parameters('vmName'), '/setupScript')]",
-      "location": "centralindia",
+      "location": "eastus",
       "dependsOn": [
         "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
       ],

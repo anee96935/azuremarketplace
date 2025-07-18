@@ -1,5 +1,9 @@
 #!/bin/bash
 
+OLD_IP="4.188.74.252"
+NEW_IP=$(curl -s https://ifconfig.me)
+
+
 DB_USER="$1"
 DB_PASS="$2"
 DB_NAME="$3"
@@ -11,7 +15,7 @@ echo "Starting brand update for $BRAND_NAME"
 mysql -u "$DB_USER" -p"$DB_PASS" -e "
 USE $DB_NAME;
 UPDATE wp_options SET option_value = '$BRAND_NAME' WHERE option_name IN ('blogname', 'blogdescription');
-UPDATE wp_options SET option_value = REPLACE(option_value, 'http://OLD_IP', 'http://NEW_IP') WHERE option_name IN ('siteurl', 'home');
+UPDATE wp_options SET option_value = REPLACE(option_value, 'http://$OLD_IP', 'http://$NEW_IP') WHERE option_name IN ('siteurl', 'home');
 "
 
 # Update plugin branding if needed
