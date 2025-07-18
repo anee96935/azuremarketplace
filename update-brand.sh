@@ -1,17 +1,14 @@
 #!/bin/bash
 
-OLD_IP="4.188.74.252"
-NEW_IP=$(curl -s https://ifconfig.me)
-
-
 DB_USER="$1"
 DB_PASS="$2"
 DB_NAME="$3"
 BRAND_NAME="$4"
+OLD_IP="$5"
+NEW_IP="$6"
 
-echo "Starting brand update for $BRAND_NAME"
+echo "Starting brand update for $BRAND_NAME with IP change from $OLD_IP to $NEW_IP"
 
-# Update site title and description
 mysql -u "$DB_USER" -p"$DB_PASS" -e "
 USE $DB_NAME;
 UPDATE wp_options SET option_value = '$BRAND_NAME' WHERE option_name IN ('blogname', 'blogdescription');
