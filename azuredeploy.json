@@ -243,6 +243,9 @@
       "name": "[concat(parameters('vmName'), '/customScript')]",
       "apiVersion": "2021-03-01",
       "location": "centralindia",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+      ],
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
@@ -250,7 +253,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/anee96935/azuremarketplace/refs/heads/main/update-brand.sh"
+            "https://raw.githubusercontent.com/anee96935/azuremarketplace/main/update-brand.sh"
           ]
         },
         "protectedSettings": {
