@@ -208,7 +208,7 @@
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[if(equals(parameters('authenticationType'), 'password'), parameters('adminPasswordOrKey'), json('null'))]",
+          "[concat('adminPassword')]": "[if(equals(parameters('authenticationType'), 'password'), parameters('adminPasswordOrKey'), json('null'))]",
           "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'sshPublicKey'), variables('linuxConfiguration'), json('null'))]"
         },
         "storageProfile": {
