@@ -236,7 +236,7 @@
         "typeHandlerVersion": "2.1",
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/your-org/scripts/main/update-brand.sh"
+            "https://raw.githubusercontent.com/anee96935/azuremarketplace/refs/heads/main/update-brand.sh"
           ],
           "commandToExecute": "[concat('bash update-brand.sh ', parameters('dbUser'), ' ', parameters('dbPass'), ' ', parameters('dbName'), ' ', parameters('brandName'))]"
         }
