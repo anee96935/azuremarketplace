@@ -61,16 +61,6 @@
       "metadata": {
         "description": "Password for the setup script"
       }
-    },
-    "dbUser": {
-      "type": "string",
-       "defaultValue": "root"
-    },
-    "dbPass": {
-      "type": "securestring"
-    },
-    "dbName": {
-      "type": "string"
     }
   },
   "variables": {
@@ -250,21 +240,21 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "[concat(parameters('vmName'), '/customScript')]",
       "apiVersion": "2021-03-01",
-      "name": "[concat(parameters('vmName'), '/setupScript')]",
-      "location": "centralindia",
-      "dependsOn": [
-        "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-      ],
+      "location": "[resourceGroup().location]",
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
         "typeHandlerVersion": "2.1",
+        "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
             "https://raw.githubusercontent.com/anee96935/azuremarketplace/refs/heads/main/update-brand.sh"
-          ],
-          "commandToExecute": "[concat('bash update-brand.sh ', parameters('dbUser'), ' ', parameters('dbPass'), ' ', parameters('dbName'), ' ', parameters('brandName'))]"
+          ]
+        },
+        "protectedSettings": {
+          "commandToExecute": "[concat('bash update-brand.sh ', parameters('brandName'), ' ', parameters('adminUser'), ' ', parameters('adminPass'))]"
         }
       }
     }
