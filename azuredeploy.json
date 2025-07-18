@@ -205,15 +205,22 @@
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
+        "securityProfile": {
+          "securityType": "TrustedLaunch",
+          "uefiSettings": {
+            "secureBootEnabled": true,
+            "vTpmEnabled": true
+          }
+        },
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
-          "[concat('adminPassword')]": "[if(equals(parameters('authenticationType'), 'password'), parameters('adminPasswordOrKey'), json('null'))]",
+          "adminPassword": "[if(equals(parameters('authenticationType'), 'password'), parameters('adminPasswordOrKey'), json('null'))]",
           "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'sshPublicKey'), variables('linuxConfiguration'), json('null'))]"
         },
         "storageProfile": {
           "imageReference": {
-            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/galleries/athenacomputegallery18072025/images/athena-VM-image-18-07-2025/versions/0.0.6"
+            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/galleries/athenabetaimagev5/images/Athena-Beta-Image-v5-definition"
           },
           "osDisk": {
             "createOption": "FromImage",
