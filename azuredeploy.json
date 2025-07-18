@@ -205,18 +205,11 @@
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
-        "securityProfile": {
-          "securityType": "Standard",
-          "uefiSettings": {
-            "secureBootEnabled": false,
-            "vTpmEnabled": false
-          }
-        },
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[if(equals(parameters('authenticationType'), 'password'), parameters('adminPasswordOrKey'), json('null'))]",
-          "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'sshPublicKey'), variables('linuxConfiguration'), json('null'))]"
+          "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'sshPublicKey'), variables('linuxConfiguration'), null)]"
         },
         "storageProfile": {
           "imageReference": {
