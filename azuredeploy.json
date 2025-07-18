@@ -205,6 +205,13 @@
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
+        "securityProfile": {
+          "securityType": "TrustedLaunch",
+          "uefiSettings": {
+            "secureBootEnabled": true,
+            "vTpmEnabled": true
+          }
+        },
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
@@ -213,7 +220,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/galleries/athenacomputegallery18072025/images/athena-VM-image-18-07-2025"
+            "id": "/subscriptions/5f6a39dd-3db6-4fa2-bf7a-3f573e042889/resourceGroups/Athena-dev/providers/Microsoft.Compute/galleries/athenacomputegallery18072025/images/athena-VM-image-18-07-2025/versions/0.0.6"
           },
           "osDisk": {
             "createOption": "FromImage",
