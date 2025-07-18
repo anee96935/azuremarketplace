@@ -208,8 +208,8 @@
         "securityProfile": {
           "securityType": "TrustedLaunch",
           "uefiSettings": {
-            "secureBootEnabled": true,
-            "vTpmEnabled": true
+            "secureBootEnabled": false,
+            "vTpmEnabled": false
           }
         },
         "osProfile": {
