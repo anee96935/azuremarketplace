@@ -254,7 +254,7 @@
           ]
         },
         "protectedSettings": {
-          "commandToExecute": "[concat('bash update-brand.sh ', parameters('brandName'), ' ', parameters('adminUser'), ' ', parameters('adminPass'))]"
+          "commandToExecute": "[concat('bash update-brand.sh ', parameters('brandName'), ' ', parameters('username'), ' ', parameters('password'))]"
         }
       }
     }
