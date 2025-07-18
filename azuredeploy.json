@@ -242,7 +242,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(parameters('vmName'), '/customScript')]",
       "apiVersion": "2021-03-01",
-      "location": "[resourceGroup().location]",
+      "location": "centralindia",
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
