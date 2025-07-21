@@ -198,6 +198,11 @@
       "apiVersion": "2021-03-01",
       "name": "[parameters('vmName')]",
       "location": "centralindia",
+      "plan": {
+        "name": "plan-name",
+        "product": "product-name",
+        "publisher": "publisher-name"
+      },
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
       ],
