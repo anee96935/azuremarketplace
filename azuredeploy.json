@@ -199,9 +199,9 @@
       "name": "[parameters('vmName')]",
       "location": "centralindia",
       "plan": {
-        "name": "plan-name",
-        "product": "product-name",
-        "publisher": "publisher-name"
+        "name": "athena-azure-plan-05",
+        "product": "athena-beta-release-v4-preview",
+        "publisher": "yendigital"
       },
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
