@@ -3,6 +3,7 @@
 BRAND_NAME="$1"
 ADMIN_USER="$2"
 ADMIN_PASS="$3"
+WP_PATH="/var/www/html"
 
 # Read DB credentials from a secure local file or env vars
 DB_USER=$(cat /etc/athena/db_user)
@@ -17,4 +18,6 @@ UPDATE wp_options SET option_value = 'http://$NEW_IP' WHERE option_name IN ('sit
 UPDATE wp_users SET user_login = '$ADMIN_USER', user_pass = MD5('$ADMIN_PASS') WHERE ID = 1;
 "
 
-sed -i "s/page=athena/page=$BRAND_NAME/g" /var/www/html/wp-content/plugins/athena/lib/helpers/athena_grid_helper.php
+# Update WordPress options via WP-CLI
+wp option update blogname "$BRAND_NAME" --path="$WP_PATH" --allow-root
+wp option update blogdescription "$BRAND_NAME" --path="$WP_PATH" --allow-root
