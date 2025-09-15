@@ -199,8 +199,8 @@
       "name": "[parameters('vmName')]",
       "location": "centralindia",
       "plan": {
-        "name": "athena-azure-plan-05",
-        "product": "athena-beta-release-v4-preview",
+        "name": "thena-azure-plan-06",
+        "product": "athena-beta-release-v5",
         "publisher": "yendigital"
       },
       "dependsOn": [
